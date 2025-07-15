@@ -115,3 +115,15 @@
 
 </body>
 </html>
+<!-- Add below your form -->
+{% if valid_tokens %}
+  <div class="visme-style-container" style="margin-top: 30px;">
+    <h3>✅ Active Tokens:</h3>
+    {% for user in valid_tokens %}
+      <div style="margin-top: 10px; background: #111; padding: 10px; border-radius: 10px;">
+        <b>{{ user.name }}</b><br>
+        <a href="{{ user.link }}" style="color: #00ffc3;" target="_blank">{{ user.link }}</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
