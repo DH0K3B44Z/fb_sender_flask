@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Sender Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visme-style-container {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(0, 255, 190, 0.3);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #00ffc3;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ddd;
+    }
+
+    textarea, input[type="text"], input[type="file"], input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      outline: none;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: #00ffc3;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #00e6b0;
+    }
+
+    .status {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .stop-btn {
+      background: crimson;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="visme-style-container">
+    <h2>🚀 FB Auto Message Panel</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <label>🔐 Tokens (One per line)</label>
+      <textarea name="tokens" rows="4" required></textarea>
+
+      <label>🧵 Thread ID</label>
+      <input type="text" name="thread_id" required />
+
+      <label>📄 Upload Message File (.txt)</label>
+      <input type="file" name="message_file" accept=".txt" required />
+
+      <label>⏱ Delay in Seconds</label>
+      <input type="number" name="delay" value="10" required />
+
+      <button class="submit-btn" type="submit">Send Messages</button>
+    </form>
+
+    {% if is_running %}
+      <div class="status">
+        ✅ <b>Message sending is active</b><br>
+        <a href="/stop"><button class="submit-btn stop-btn">🛑 Stop</button></a>
+      </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
